@@ -15,15 +15,24 @@ author = "agent"
 
 [[workflows.workflow.tasks]]
 task = "workflow.run"
-args = "Run Application"
+args = "Web Server"
 
 [[workflows.workflow]]
-name = "Run Application"
+name = "Web Server"
 author = "agent"
-
-[workflows.workflow.metadata]
-outputType = "console"
 
 [[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "python \"Securing Cloud Storage Using Homomorphic Encryption.py\" sample.txt"
+args = "python app.py"
+waitForPort = 5000
+
+[workflows.workflow.metadata]
+outputType = "webview"
+
+[[ports]]
+localPort = 5000
+externalPort = 80
+
+[[ports]]
+localPort = 42347
+externalPort = 3000
